@@ -1,5 +1,5 @@
-export const OWNER = "Hk-Gosuto";
-export const REPO = "ChatGPT-Next-Web-LangChain";
+export const OWNER = "Yidadaa";
+export const REPO = "ChatGPT-Next-Web";
 export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
 export const ISSUE_URL = `https://github.com/${OWNER}/${REPO}/issues`;
 export const UPDATE_URL = `${REPO_URL}#keep-updated`;
@@ -101,31 +101,11 @@ export const KnowledgeCutOffDate: Record<string, string> = {
 
 export const DEFAULT_MODELS = [
   {
-    name: "gpt-4",
-    available: true,
-  },
-  {
-    name: "gpt-4-0613",
-    available: true,
-  },
-  {
-    name: "gpt-4-32k",
-    available: true,
-  },
-  {
-    name: "gpt-4-32k-0613",
-    available: true,
-  },
-  {
-    name: "gpt-4-1106-preview",
-    available: true,
-  },
-  {
-    name: "gpt-4-vision-preview",
-    available: true,
-  },
-  {
     name: "gpt-3.5-turbo",
+    available: true,
+  },
+  {
+    name: "gpt-3.5-turbo-0301",
     available: true,
   },
   {
@@ -142,6 +122,78 @@ export const DEFAULT_MODELS = [
   },
   {
     name: "gpt-3.5-turbo-16k-0613",
+    available: true,
+  },
+  {
+    name: "gpt-35-turbo",
+    available: true,
+  },
+  {
+    name: "gpt-35-turbo-16k",
+    available: true,
+  },
+  {
+    name: "gpt-4",
+    available: true,
+  },
+  {
+    name: "gpt-4-0314",
+    available: true,
+  },
+  {
+    name: "gpt-4-1106-preview",
+    available: true,
+  },
+  {
+    name: "gpt-4-vision-preview",
+    available: true,
+  },
+  {
+    name: "ERNIE-Bot",
+    available: true,
+  },
+  {
+    name: "ERNIE-Bot-turbo",
+    available: true,
+  },
+  {
+    name: "ERNIE-Bot-4",
+    available: true,
+  },
+  {
+    name: "SparkDesk",
+    available: true,
+  },
+  {
+    name: "SparkDesk2",
+    available: true,
+  },
+  {
+    name: "SparkDesk3",
+    available: true,
+  },
+  {
+    name: "360GPT_S2_V9",
+    available: true,
+  },
+  {
+    name: "chatglm_std",
+    available: true,
+  },
+  {
+    name: "chatglm_pro",
+    available: true,
+  },
+  {
+    name: "chatglm_lite",
+    available: true,
+  },
+  {
+    name: "qwen-turbo",
+    available: true,
+  },
+  {
+    name: "qwen-plus",
     available: true,
   },
 ] as const;
