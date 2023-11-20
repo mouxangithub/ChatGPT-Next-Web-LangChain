@@ -119,40 +119,21 @@
 code1,code2,code3
 ```
 
-增加或修改该环境变量后，请**重新部署**项目使改动生效。
+After adding or modifying this environment variable, please redeploy the project for the changes to take effect.
 
-## 环境变量
+## Environment Variables
 
-> 本项目大多数配置项都通过环境变量来设置，教程：[如何修改 Vercel 环境变量](./docs/vercel-cn.md)。
+> [简体中文 > 如何配置 api key、访问密码、接口代理](./README_CN.md#环境变量)
 
-### `OPENAI_API_KEY` （必填项）
+### `CODE` (optional)
 
-OpanAI 密钥，你在 openai 账户页面申请的 api key。
+Access password, separated by comma.
 
-### `SERPAPI_API_KEY` (可选)
+### `OPENAI_API_KEY` (required)
 
-[SerpApi: Google Search API](https://serpapi.com/)
+Your openai api key.
 
-### `BING_SEARCH_API_KEY` (可选)
-
-[Web Search API | Microsoft Bing](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api)
-
-### `CHOOSE_SEARCH_ENGINE` (可选)
-
-此项为直连搜索引擎，免去api试用量小的烦恼，但可能因为网络问题导致无法使用
-
-可选项如下：
-
-- google
-- baidu
-
-### `CODE` （可选）
-
-访问密码，可选，可以使用逗号隔开多个密码。
-
-**警告**：如果不填写此项，则任何人都可以直接使用你部署后的网站，可能会导致你的 token 被急速消耗完毕，建议填写此选项。
-
-### `BASE_URL` （可选）
+### `BASE_URL` (optional)
 
 > Default: `https://api.openai.com`
 
@@ -178,29 +159,73 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 
 如果你不想让用户查询余额，将此环境变量设置为 1 即可。
 
-### `R2_ACCOUNT_ID` （可选）
+### `HIDE_USER_API_KEY` (optional)
 
-Cloudflare R2 帐户 ID，使用 `DALL-E` 插件时需要配置。
+> Default: Empty
 
-### `R2_ACCESS_KEY_ID` （可选）
+If you do not want users to input their own API key, set this value to 1.
 
-Cloudflare R2 访问密钥 ID，使用 `DALL-E` 插件时需要配置。
+### `DISABLE_GPT4` (optional)
 
-### `R2_SECRET_ACCESS_KEY` （可选）
+> Default: Empty
 
-Cloudflare R2 机密访问密钥，使用 `DALL-E` 插件时需要配置。
+If you do not want users to use GPT-4, set this value to 1.
 
-### `R2_BUCKET` （可选）
+### `ENABLE_BALANCE_QUERY` (optional)
 
-Cloudflare R2 Bucket 名称，使用 `DALL-E` 插件时需要配置。
+> Default: Empty
 
-## 部署
+If you do want users to query balance, set this value to 1, or you should set it to 0.
 
-### 容器部署 （推荐）
+### `DISABLE_FAST_LINK` (optional)
 
-> Docker 版本需要在 20 及其以上，否则会提示找不到镜像。
+> Default: Empty
 
-> ⚠️ 注意：docker 版本在大多数时间都会落后最新的版本 1 到 2 天，所以部署后会持续出现“存在更新”的提示，属于正常现象。
+If you want to disable parse settings from url, set this to 1.
+
+### `CUSTOM_MODELS` (optional)
+
+> Default: Empty
+> Example: `+llama,+claude-2,-gpt-3.5-turbo,gpt-4-1106-preview=gpt-4-turbo` means add `llama, claude-2` to model list, and remove `gpt-3.5-turbo` from list, and display `gpt-4-1106-preview` as `gpt-4-turbo`.
+
+To control custom models, use `+` to add a custom model, use `-` to hide a model, use `name=displayName` to customize model name, separated by comma.
+
+User `-all` to disable all default models, `+all` to enable all default models.
+
+## Requirements
+
+NodeJS >= 18, Docker >= 20
+
+## Development
+
+> [简体中文 > 如何进行二次开发](./README_CN.md#开发)
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Yidadaa/ChatGPT-Next-Web)
+
+Before starting development, you must create a new `.env.local` file at project root, and place your api key into it:
+
+```
+OPENAI_API_KEY=<your api key here>
+
+# if you are not able to access openai service, use this BASE_URL
+BASE_URL=https://chatgpt1.nextweb.fun/api/proxy
+```
+
+### Local Development
+
+```shell
+# 1. install nodejs and yarn first
+# 2. config local env vars in `.env.local`
+# 3. run
+yarn install
+yarn dev
+```
+
+## Deployment
+
+> [简体中文 > 如何部署到私人服务器](./README_CN.md#部署)
+
+### Docker (Recommended)
 
 ```shell
 docker run -d -p 3000:3000 \
