@@ -64,6 +64,8 @@ const pt: LocaleType = {
       Masks: "Máscaras",
       Clear: "Limpar Contexto",
       Settings: "Configurações",
+      EnablePlugins: "Ativar o plugin",
+      DisablePlugins: "Desativar o plugin",
     },
     Rename: "Renomear Chat",
     Typing: "Digitando…",
@@ -345,6 +347,20 @@ const pt: LocaleType = {
       SubTitle:
         "Um valor maior diminui a probabilidade de repetir a mesma linha",
     },
+    Plugin: {
+      Enable: {
+        Title: "Ativar plugin",
+        SubTitle: "Ativar funcionalidade de chamada do plugin",
+      },
+      MaxIteration: {
+        Title: "Número máximo de iterações",
+        SubTitle: "Número máximo de iterações para chamada do plugin",
+      },
+      ReturnIntermediateStep: {
+        Title: "Retornar etapa intermediária",
+        SubTitle: "Retornar etapa intermediária da chamada do plugin",
+      },
+    },
   },
   Store: {
     DefaultTopic: "Nova Conversa",
@@ -378,6 +394,24 @@ const pt: LocaleType = {
   },
   Plugin: {
     Name: "Plugin",
+    Page: {
+      Title: "Plugins Padrão",
+      SubTitle: (count: number) => `${count} plugins padrão`,
+      Search: "Pesquisar plugins",
+      Create: "Criar",
+    },
+    Item: {
+      View: "Visualizar",
+      Edit: "Editar",
+      Delete: "Excluir",
+      DeleteConfirm: "Confirmar exclusão?",
+    },
+    EditModal: {
+      Title: (readonly: boolean) =>
+        `Editar plugin padrão ${readonly ? "(somente leitura)" : ""}`,
+      Download: "Baixar plugin",
+      Clone: "Clonar plugin",
+    },
   },
   FineTuned: {
     Sysmessage: "Você é um assistente que",
