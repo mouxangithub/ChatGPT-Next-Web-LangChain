@@ -274,6 +274,7 @@ docker run -d -p 3000:3000 \
 
 [请项目原作者喝杯咖啡](https://www.buymeacoffee.com/yidadaa)
 
+<<<<<<< HEAD
 ## Donation
 
 [Buy Me a Coffee](https://www.buymeacoffee.com/yidadaa)
@@ -317,5 +318,14 @@ docker run -d -p 3000:3000 \
 [Contributors](https://github.com/Yidadaa/ChatGPT-Next-Web/graphs/contributors)
 
 ## LICENSE
+=======
+## 感谢
+
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo." height='120'>
+
+感谢 [jetbrains](https://www.jetbrains.com/) 为本项目提供的 [开源许可证](https://www.jetbrains.com/community/opensource/)
+
+## 开源协议
+>>>>>>> 23fea7786a2e6d34ad1b3f5a62852ee5acd7f5f7
 
 [MIT](https://opensource.org/license/mit/)
