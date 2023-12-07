@@ -23,19 +23,33 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain)
 
+![cover](./docs/images/gpt-vision-example.jpg)
+
 ![plugin-example](./docs/images/plugin-example.png)
 
 ![wiki-plugin](./docs/images/wiki-plugin-example.png)
 
 ![dall-e-plugin](./docs/images/dalle-plugin-example.png)
 
-![cover](./docs/images/cover.png)
-
 </div>
 
 ## 主要功能
 
+<<<<<<<<< Temporary merge branch 1
+- 在 1 分钟内使用 Vercel **免费一键部署**
+- 提供体积极小（~5MB）的跨平台客户端（Linux/Windows/MacOS）, [下载地址](https://github.com/Yidadaa/ChatGPT-Next-Web/releases)
+- 完整的 Markdown 支持：LaTex 公式、Mermaid 流程图、代码高亮等等
+- 精心设计的 UI，响应式设计，支持深色模式，支持 PWA
+- 极快的首屏加载速度（~100kb），支持流式响应
+- 隐私安全，所有数据保存在用户浏览器本地
+- 预制角色功能（面具），方便地创建、分享和调试你的个性化对话
+- 海量的内置 prompt 列表，来自[中文](https://github.com/PlexPt/awesome-chatgpt-prompts-zh)和[英文](https://github.com/f/awesome-chatgpt-prompts)
+- 自动压缩上下文聊天记录，在节省 Token 的同时支持超长对话
+- 多国语言支持：English, 简体中文, 繁体中文, 日本語, Español, Italiano, Türkçe, Deutsch, Tiếng Việt, Русский, Čeština, 한국어, Indonesia
+- 拥有自己的域名？好上加好，绑定后即可在任何地方**无障碍**快速访问
+=========
 - 除插件工具外，与原项目保持一致 [ChatGPT-Next-Web 主要功能](https://github.com/Yidadaa/ChatGPT-Next-Web#主要功能)
+- 支持 GPT-4V(视觉) 模型
 - 基于 [LangChain](https://github.com/hwchase17/langchainjs) 实现的插件功能，目前支持以下插件，未来会添加更多
   - 搜索
     - [SerpAPI](https://js.langchain.com/docs/api/tools/classes/SerpAPI)
@@ -133,7 +147,30 @@ Access password, separated by comma.
 
 ### `OPENAI_API_KEY` (required)
 
+<<<<<<<<< Temporary merge branch 1
 Your openai api key, join multiple api keys with comma.
+=========
+[SerpApi: Google Search API](https://serpapi.com/)
+>>>>>>>>> Temporary merge branch 2
+
+### `BING_SEARCH_API_KEY` (可选)
+
+[Web Search API | Microsoft Bing](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api)
+
+### `CHOOSE_SEARCH_ENGINE` (可选)
+
+此项为直连搜索引擎，免去api试用量小的烦恼，但可能因为网络问题导致无法使用
+
+可选项如下：
+
+- google
+- baidu
+
+### `CODE` （可选）
+
+访问密码，可选，可以使用逗号隔开多个密码。
+
+**警告**：如果不填写此项，则任何人都可以直接使用你部署后的网站，可能会导致你的 token 被急速消耗完毕，建议填写此选项。
 
 ### `BASE_URL` (optional)
 
@@ -183,6 +220,7 @@ If you do want users to query balance, set this value to 1, or you should set it
 
 > Default: Empty
 
+<<<<<<<<< Temporary merge branch 1
 If you want to disable parse settings from url, set this to 1.
 
 ### `CUSTOM_MODELS` (optional)
@@ -228,6 +266,20 @@ yarn dev
 > [简体中文 > 如何部署到私人服务器](./README_CN.md#部署)
 
 ### Docker (Recommended)
+
+```shell
+docker pull yidadaa/chatgpt-next-web
+
+docker run -d -p 3000:3000 \
+   -e OPENAI_API_KEY=sk-xxxx \
+   -e CODE=your-password \
+   yidadaa/chatgpt-next-web
+```
+
+You can start service behind a proxy:
+=========
+> ⚠️ 注意：docker 版本在大多数时间都会落后最新的版本 1 到 2 天，所以部署后会持续出现“存在更新”的提示，属于正常现象。
+>>>>>>>>> Temporary merge branch 2
 
 ```shell
 docker run -d -p 3000:3000 \
@@ -283,6 +335,7 @@ docker run -d -p 3000:3000 \
 
 ## Special Thanks
 
+<<<<<<<<< Temporary merge branch 1
 ### Sponsor
 
 > 仅列出捐赠金额 >= 100RMB 的用户。
@@ -320,14 +373,8 @@ docker run -d -p 3000:3000 \
 [Contributors](https://github.com/Yidadaa/ChatGPT-Next-Web/graphs/contributors)
 
 ## LICENSE
-=======
-## 感谢
-
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo." height='120'>
-
-感谢 [jetbrains](https://www.jetbrains.com/) 为本项目提供的 [开源许可证](https://www.jetbrains.com/community/opensource/)
-
+=========
 ## 开源协议
->>>>>>> 23fea7786a2e6d34ad1b3f5a62852ee5acd7f5f7
+>>>>>>>>> Temporary merge branch 2
 
 [MIT](https://opensource.org/license/mit/)
