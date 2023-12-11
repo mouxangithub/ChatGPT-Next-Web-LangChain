@@ -50,6 +50,8 @@
 =========
 - 除插件工具外，与原项目保持一致 [ChatGPT-Next-Web 主要功能](https://github.com/Yidadaa/ChatGPT-Next-Web#主要功能)
 - 支持 GPT-4V(视觉) 模型
+  - 需要配置对象存储服务，请参考 [对象存储服务配置指南](./docs/s3-oss.md) 配置
+
 - 基于 [LangChain](https://github.com/hwchase17/langchainjs) 实现的插件功能，目前支持以下插件，未来会添加更多
   - 搜索
     - [SerpAPI](https://js.langchain.com/docs/api/tools/classes/SerpAPI)
@@ -64,11 +66,11 @@
   - 其它
     - [Wiki](https://js.langchain.com/docs/api/tools/classes/WikipediaQueryRun)
     - DALL-E 3
-      - DALL-E 3 插件需要配置 R2 存储，请参考 [Cloudflare R2 服务配置指南](./docs/cloudflare-r2-cn.md) 配置
+      - DALL-E 3 插件需要配置对象存储服务，请参考 [对象存储服务配置指南](./docs/s3-oss.md) 配置
     - StableDiffusion
       - 本插件目前为测试版本，后续可能会有较大的变更，请谨慎使用
       - 使用本插件需要一定的专业知识，Stable Diffusion 本身的相关问题不在本项目的解答范围内，如果您确定要使用本插件请参考 [Stable Diffusion 插件配置指南](./docs/stable-diffusion-plugin-cn.md) 文档进行配置
-      - StableDiffusion 插件需要配置 R2 存储，请参考 [Cloudflare R2 服务配置指南](./docs/cloudflare-r2-cn.md) 配置
+      - StableDiffusion 插件需要配置对象存储服务，请参考 [对象存储服务配置指南](./docs/s3-oss.md) 配置
     - Arxiv
 
 ## 开发计划
@@ -198,86 +200,12 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 
 如果你不想让用户查询余额，将此环境变量设置为 1 即可。
 
-### `HIDE_USER_API_KEY` (optional)
+## 部署
 
-> Default: Empty
+### 容器部署 （推荐）
 
-If you do not want users to input their own API key, set this value to 1.
+> Docker 版本需要在 20 及其以上，否则会提示找不到镜像。
 
-### `DISABLE_GPT4` (optional)
-
-> Default: Empty
-
-If you do not want users to use GPT-4, set this value to 1.
-
-### `ENABLE_BALANCE_QUERY` (optional)
-
-> Default: Empty
-
-If you do want users to query balance, set this value to 1, or you should set it to 0.
-
-### `DISABLE_FAST_LINK` (optional)
-
-> Default: Empty
-
-<<<<<<<<< Temporary merge branch 1
-If you want to disable parse settings from url, set this to 1.
-
-### `CUSTOM_MODELS` (optional)
-
-> Default: Empty
-> Example: `+llama,+claude-2,-gpt-3.5-turbo,gpt-4-1106-preview=gpt-4-turbo` means add `llama, claude-2` to model list, and remove `gpt-3.5-turbo` from list, and display `gpt-4-1106-preview` as `gpt-4-turbo`.
-
-To control custom models, use `+` to add a custom model, use `-` to hide a model, use `name=displayName` to customize model name, separated by comma.
-
-User `-all` to disable all default models, `+all` to enable all default models.
-
-## Requirements
-
-NodeJS >= 18, Docker >= 20
-
-## Development
-
-> [简体中文 > 如何进行二次开发](./README_CN.md#开发)
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Yidadaa/ChatGPT-Next-Web)
-
-Before starting development, you must create a new `.env.local` file at project root, and place your api key into it:
-
-```
-OPENAI_API_KEY=<your api key here>
-
-# if you are not able to access openai service, use this BASE_URL
-BASE_URL=https://chatgpt1.nextweb.fun/api/proxy
-```
-
-### Local Development
-
-```shell
-# 1. install nodejs and yarn first
-# 2. config local env vars in `.env.local`
-# 3. run
-yarn install
-yarn dev
-```
-
-## Deployment
-
-> [简体中文 > 如何部署到私人服务器](./README_CN.md#部署)
-
-### Docker (Recommended)
-
-```shell
-docker pull yidadaa/chatgpt-next-web
-
-docker run -d -p 3000:3000 \
-   -e OPENAI_API_KEY=sk-xxxx \
-   -e CODE=your-password \
-   yidadaa/chatgpt-next-web
-```
-
-You can start service behind a proxy:
-=========
 > ⚠️ 注意：docker 版本在大多数时间都会落后最新的版本 1 到 2 天，所以部署后会持续出现“存在更新”的提示，属于正常现象。
 >>>>>>>>> Temporary merge branch 2
 
