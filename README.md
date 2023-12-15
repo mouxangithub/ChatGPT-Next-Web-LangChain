@@ -35,19 +35,6 @@
 
 ## 主要功能
 
-<<<<<<<<< Temporary merge branch 1
-- 在 1 分钟内使用 Vercel **免费一键部署**
-- 提供体积极小（~5MB）的跨平台客户端（Linux/Windows/MacOS）, [下载地址](https://github.com/Yidadaa/ChatGPT-Next-Web/releases)
-- 完整的 Markdown 支持：LaTex 公式、Mermaid 流程图、代码高亮等等
-- 精心设计的 UI，响应式设计，支持深色模式，支持 PWA
-- 极快的首屏加载速度（~100kb），支持流式响应
-- 隐私安全，所有数据保存在用户浏览器本地
-- 预制角色功能（面具），方便地创建、分享和调试你的个性化对话
-- 海量的内置 prompt 列表，来自[中文](https://github.com/PlexPt/awesome-chatgpt-prompts-zh)和[英文](https://github.com/f/awesome-chatgpt-prompts)
-- 自动压缩上下文聊天记录，在节省 Token 的同时支持超长对话
-- 多国语言支持：English, 简体中文, 繁体中文, 日本語, Español, Italiano, Türkçe, Deutsch, Tiếng Việt, Русский, Čeština, 한국어, Indonesia
-- 拥有自己的域名？好上加好，绑定后即可在任何地方**无障碍**快速访问
-=========
 - 除插件工具外，与原项目保持一致 [ChatGPT-Next-Web 主要功能](https://github.com/Yidadaa/ChatGPT-Next-Web#主要功能)
 - 支持 GPT-4V(视觉) 模型
   - 需要配置对象存储服务，请参考 [对象存储服务配置指南](./docs/s3-oss.md) 配置
@@ -137,23 +124,19 @@
 code1,code2,code3
 ```
 
-After adding or modifying this environment variable, please redeploy the project for the changes to take effect.
+增加或修改该环境变量后，请**重新部署**项目使改动生效。
 
-## Environment Variables
+## 环境变量
 
-> [简体中文 > 如何配置 api key、访问密码、接口代理](./README_CN.md#环境变量)
+> 本项目大多数配置项都通过环境变量来设置，教程：[如何修改 Vercel 环境变量](./docs/vercel-cn.md)。
 
-### `CODE` (optional)
+### `OPENAI_API_KEY` （必填项）
 
-Access password, separated by comma.
+OpanAI 密钥，你在 openai 账户页面申请的 api key。
 
-### `OPENAI_API_KEY` (required)
+### `SERPAPI_API_KEY` (可选)
 
-<<<<<<<<< Temporary merge branch 1
-Your openai api key, join multiple api keys with comma.
-=========
 [SerpApi: Google Search API](https://serpapi.com/)
->>>>>>>>> Temporary merge branch 2
 
 ### `BING_SEARCH_API_KEY` (可选)
 
@@ -174,7 +157,7 @@ Your openai api key, join multiple api keys with comma.
 
 **警告**：如果不填写此项，则任何人都可以直接使用你部署后的网站，可能会导致你的 token 被急速消耗完毕，建议填写此选项。
 
-### `BASE_URL` (optional)
+### `BASE_URL` （可选）
 
 > Default: `https://api.openai.com`
 
@@ -207,7 +190,6 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 > Docker 版本需要在 20 及其以上，否则会提示找不到镜像。
 
 > ⚠️ 注意：docker 版本在大多数时间都会落后最新的版本 1 到 2 天，所以部署后会持续出现“存在更新”的提示，属于正常现象。
->>>>>>>>> Temporary merge branch 2
 
 ```shell
 docker run -d -p 3000:3000 \
@@ -256,53 +238,12 @@ docker run -d -p 3000:3000 \
 
 [请项目原作者喝杯咖啡](https://www.buymeacoffee.com/yidadaa)
 
-<<<<<<< HEAD
-## Donation
+## 感谢
 
-[Buy Me a Coffee](https://www.buymeacoffee.com/yidadaa)
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo." height='120'>
 
-## Special Thanks
+感谢 [jetbrains](https://www.jetbrains.com/) 为本项目提供的 [开源许可证](https://www.jetbrains.com/community/opensource/)
 
-<<<<<<<<< Temporary merge branch 1
-### Sponsor
-
-> 仅列出捐赠金额 >= 100RMB 的用户。
-
-[@mushan0x0](https://github.com/mushan0x0)
-[@ClarenceDan](https://github.com/ClarenceDan)
-[@zhangjia](https://github.com/zhangjia)
-[@hoochanlon](https://github.com/hoochanlon)
-[@relativequantum](https://github.com/relativequantum)
-[@desenmeng](https://github.com/desenmeng)
-[@webees](https://github.com/webees)
-[@chazzhou](https://github.com/chazzhou)
-[@hauy](https://github.com/hauy)
-[@Corwin006](https://github.com/Corwin006)
-[@yankunsong](https://github.com/yankunsong)
-[@ypwhs](https://github.com/ypwhs)
-[@fxxxchao](https://github.com/fxxxchao)
-[@hotic](https://github.com/hotic)
-[@WingCH](https://github.com/WingCH)
-[@jtung4](https://github.com/jtung4)
-[@micozhu](https://github.com/micozhu)
-[@jhansion](https://github.com/jhansion)
-[@Sha1rholder](https://github.com/Sha1rholder)
-[@AnsonHyq](https://github.com/AnsonHyq)
-[@synwith](https://github.com/synwith)
-[@piksonGit](https://github.com/piksonGit)
-[@ouyangzhiping](https://github.com/ouyangzhiping)
-[@wenjiavv](https://github.com/wenjiavv)
-[@LeXwDeX](https://github.com/LeXwDeX)
-[@Licoy](https://github.com/Licoy)
-[@shangmin2009](https://github.com/shangmin2009)
-
-### Contributor
-
-[Contributors](https://github.com/Yidadaa/ChatGPT-Next-Web/graphs/contributors)
-
-## LICENSE
-=========
 ## 开源协议
->>>>>>>>> Temporary merge branch 2
 
 [MIT](https://opensource.org/license/mit/)
