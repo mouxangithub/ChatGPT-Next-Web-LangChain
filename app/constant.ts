@@ -197,6 +197,10 @@ export const DEFAULT_MODELS = [
     name: "qwen-plus",
     available: true,
   },
+  {
+    name: "hunyuan",
+    available: true,
+  },
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
