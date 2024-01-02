@@ -1,4 +1,9 @@
-import { Google, REQUEST_TIMEOUT_MS } from "@/app/constant";
+import {
+  ApiPath,
+  Google,
+  REQUEST_TIMEOUT_MS,
+  ServiceProvider,
+} from "@/app/constant";
 import {
   AgentChatOptions,
   ChatOptions,
@@ -16,6 +21,7 @@ import { prettyObject } from "@/app/utils/format";
 import { getClientConfig } from "@/app/config/client";
 import Locale from "../../locales";
 import { getServerSideConfig } from "@/app/config/server";
+import de from "@/app/locales/de";
 export class GeminiProApi implements LLMApi {
   toolAgentChat(options: AgentChatOptions): Promise<void> {
     throw new Error("Method not implemented.");
@@ -68,6 +74,24 @@ export class GeminiProApi implements LLMApi {
         topP: modelConfig.top_p,
         // "topK": modelConfig.top_k,
       },
+      safetySettings: [
+        {
+          category: "HARM_CATEGORY_HARASSMENT",
+          threshold: "BLOCK_ONLY_HIGH",
+        },
+        {
+          category: "HARM_CATEGORY_HATE_SPEECH",
+          threshold: "BLOCK_ONLY_HIGH",
+        },
+        {
+          category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+          threshold: "BLOCK_ONLY_HIGH",
+        },
+        {
+          category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+          threshold: "BLOCK_ONLY_HIGH",
+        },
+      ],
     };
 
     console.log("[Request] google payload: ", requestPayload);
@@ -97,9 +121,11 @@ export class GeminiProApi implements LLMApi {
           "streamGenerateContent",
         );
         let finished = false;
+
+        let existingTexts: string[] = [];
         const finish = () => {
           finished = true;
-          options.onFinish(responseText + remainText);
+          options.onFinish(existingTexts.join(""));
         };
 
         // animate response to make it looks smooth
@@ -144,11 +170,26 @@ export class GeminiProApi implements LLMApi {
 
               try {
                 let data = JSON.parse(ensureProperEnding(partialData));
-                console.log(data);
-                let fetchText = apiClient.extractMessage(data[data.length - 1]);
-                console.log("[Response Animation] fetchText: ", fetchText);
-                remainText += fetchText;
+
+                const textArray = data.reduce(
+                  (acc: string[], item: { candidates: any[] }) => {
+                    const texts = item.candidates.map((candidate) =>
+                      candidate.content.parts
+                        .map((part: { text: any }) => part.text)
+                        .join(""),
+                    );
+                    return acc.concat(texts);
+                  },
+                  [],
+                );
+
+                if (textArray.length > existingTexts.length) {
+                  const deltaArray = textArray.slice(existingTexts.length);
+                  existingTexts = textArray;
+                  remainText += deltaArray.join("");
+                }
               } catch (error) {
+                // console.log("[Response Animation] error: ", error,partialData);
                 // skip error message when parsing json
               }
 
@@ -188,7 +229,30 @@ export class GeminiProApi implements LLMApi {
     return [];
   }
   path(path: string): string {
-    return "/api/google/" + path;
+    const accessStore = useAccessStore.getState();
+    const isGoogle =
+      accessStore.useCustomConfig &&
+      accessStore.provider === ServiceProvider.Google;
+
+    if (isGoogle && !accessStore.isValidGoogle()) {
+      throw Error(
+        "incomplete google config, please check it in your settings page",
+      );
+    }
+
+    let baseUrl = isGoogle ? accessStore.googleBaseUrl : ApiPath.GoogleAI;
+
+    if (baseUrl.length === 0) {
+      baseUrl = ApiPath.GoogleAI;
+    }
+    if (baseUrl.endsWith("/")) {
+      baseUrl = baseUrl.slice(0, baseUrl.length - 1);
+    }
+    if (!baseUrl.startsWith("http") && !baseUrl.startsWith(ApiPath.GoogleAI)) {
+      baseUrl = "https://" + baseUrl;
+    }
+
+    return [baseUrl, path].join("/");
   }
 }
 

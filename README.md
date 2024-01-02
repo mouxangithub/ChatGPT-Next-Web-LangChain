@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./docs/images/icon.svg" alt="icon"/>
+<img src="./docs/images/head-cover.png" alt="icon"/>
 
 <h1 align="center">ChatGPT Next Web LangChain</h1>
 
@@ -10,9 +10,7 @@
 [![MacOS][MacOS-image]][download-url]
 [![Linux][Linux-image]][download-url]
 
-[Web App](https://app.nextchat.dev/) / [Desktop App](https://github.com/Yidadaa/ChatGPT-Next-Web/releases) / [Discord](https://discord.gg/YCkeafCafC) / [Twitter](https://twitter.com/mortiest_ricky) / [Buy Me a Coffee](https://www.buymeacoffee.com/yidadaa)
-
-[网页版](https://app.nextchat.dev/) / [客户端](https://github.com/Yidadaa/ChatGPT-Next-Web/releases) / [反馈](https://github.com/Yidadaa/ChatGPT-Next-Web/issues) / [QQ 群](https://github.com/Yidadaa/ChatGPT-Next-Web/discussions/1724) / [打赏开发者](https://user-images.githubusercontent.com/16968934/227772541-5bcd52d8-61b7-488c-a203-0330d8006e2b.jpg)
+[网页版](https://chat-gpt-next-web-gosuto.vercel.app/) / [反馈](https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain/issues)
 
 [web-url]: https://chat-gpt-next-web-gosuto.vercel.app/
 [download-url]: https://github.com/Hk-Gosuto/ChatGPT-Next-Web-LangChain/releases
@@ -78,15 +76,18 @@
     - DuckDuckGo
   
   - 计算
-    - [Calculator](https://js.langchain.com/docs/api/tools_calculator/classes/Calculator)
-  
+    - [Calculator](https://api.js.langchain.com/classes/langchain_tools_calculator.Calculator.html)
+    - [WolframAlpha](https://api.js.langchain.com/classes/langchain_tools.WolframAlphaTool.html)
+      - 环境变量：`WOLFRAM_ALPHA_APP_ID`
+      - 申请地址：[Wolfram|Alpha Developer Portal](https://developer.wolframalpha.com/)
+    
   - 网络请求
-    - [WebBrowser](https://js.langchain.com/docs/api/tools_webbrowser/classes/WebBrowser)
+    - [WebBrowser](https://api.js.langchain.com/classes/langchain_tools_webbrowser.WebBrowser.html)
     - PDFBrowser
       - ⚠ 仅在非 vercel 环境部署时可用 ⚠
   
   - 其它
-    - [Wiki](https://js.langchain.com/docs/api/tools/classes/WikipediaQueryRun)
+    - [Wiki](https://api.js.langchain.com/classes/langchain_tools.WikipediaQueryRun.html)
     - DALL-E 3
       - DALL-E 3 插件需要配置对象存储服务，请参考 [对象存储服务配置指南](./docs/s3-oss.md) 配置
       - 如无需图像转存则可以配置  `DALLE_NO_IMAGE_STORAGE=1` ，此时将直接将 DALL-E 服务返回的临时 URL 用于图像显示，注意：该链接具有时效性

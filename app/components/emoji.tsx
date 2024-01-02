@@ -11,10 +11,7 @@ import BotIcon from "../icons/bot.svg";
 import BlackBotIcon from "../icons/black-bot.svg";
 
 export function getEmojiUrl(unified: string, style: EmojiStyle) {
-  // Whoever owns this Content Delivery Network (CDN), I am using your CDN to serve emojis
-  // Old CDN broken, so I had to switch to this one
-  // Author: https://github.com/H0llyW00dzZ
-  return `https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/${style}/64/${unified}.png`;
+  return `https://cdnjs.cloudflare.com/ajax/libs/emoji-datasource-apple/15.0.1/img/${style}/64/${unified}.png`;
 }
 
 export function AvatarPicker(props: {
