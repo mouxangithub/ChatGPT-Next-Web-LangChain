@@ -10,7 +10,7 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
+      - name: Check repository
         uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
@@ -26,13 +26,13 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PAT }}
 
-      - name: Extract metadata (tags, labels) for Docker
+      - name: Get metadata for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: |
             mouxan/chatgpt
-            ghcr.io/${{ github.repository }}
+            ghcr.io/chatgpt
           tags: |
             type=raw,value=latest
             type=ref,event=tag
