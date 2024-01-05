@@ -32,7 +32,7 @@ jobs:
         with:
           images: |
             mouxan/chatgpt
-            ghcr.io/chatgpt
+            ghcr.io/${{ github.repository }}
           tags: |
             type=raw,value=latest
             type=ref,event=tag
