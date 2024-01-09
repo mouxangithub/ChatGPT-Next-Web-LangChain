@@ -368,6 +368,24 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
+  {
+    name: "Copilot35",
+    available: true,
+    provider: {
+      id: "openai",
+      providerName: "OpenAI",
+      providerType: "openai",
+    },
+  },
+  {
+    name: "Copilot4",
+    available: true,
+    provider: {
+      id: "openai",
+      providerName: "OpenAI",
+      providerType: "openai",
+    },
+  },
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
