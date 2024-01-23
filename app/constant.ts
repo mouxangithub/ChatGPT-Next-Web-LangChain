@@ -369,7 +369,7 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "Copilot35",
+    name: "Copilot4",
     available: true,
     provider: {
       id: "openai",
@@ -378,7 +378,7 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "Copilot4",
+    name: "Copilot35",
     available: true,
     provider: {
       id: "openai",
