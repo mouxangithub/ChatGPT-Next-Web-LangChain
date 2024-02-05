@@ -369,6 +369,15 @@ export const DEFAULT_MODELS = [
     },
   },
   {
+    name: "gemini",
+    available: true,
+    provider: {
+      id: "openai",
+      providerName: "OpenAI",
+      providerType: "openai",
+    },
+  },
+  {
     name: "Copilot4",
     available: true,
     provider: {
