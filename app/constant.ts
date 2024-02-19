@@ -93,8 +93,8 @@ export const Azure = {
 };
 
 export const Google = {
-  ExampleEndpoint: process.env.BASE_URL,
-  ChatPath: "v1/chat/completions",
+  ExampleEndpoint: "https://generativelanguage.googleapis.com/",
+  ChatPath: "v1beta/models/gemini-pro:generateContent",
 };
 
 export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lang
@@ -115,6 +115,8 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   "gpt-4-1106-preview": "2023-04",
   "gpt-4-0125-preview": "2023-04",
   "gpt-4-vision-preview": "2023-04",
+  // After improvements,
+  // it's now easier to add "KnowledgeCutOffDate" instead of stupid hardcoding it, as was done previously.
   "gemini-pro": "2023-12",
   geminipro: "2023-12",
   gemini_pro: "2023-12",
@@ -522,9 +524,9 @@ export const DEFAULT_MODELS = [
     name: "gemini-pro",
     available: true,
     provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
+      id: "google",
+      providerName: "Google",
+      providerType: "google",
     },
   },
   {
