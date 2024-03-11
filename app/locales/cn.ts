@@ -42,6 +42,8 @@ const cn = {
       PinToastAction: "查看",
       Delete: "删除",
       Edit: "编辑",
+      Speech: "朗读",
+      StopSpeech: "停止",
     },
     Commands: {
       new: "新建聊天",
@@ -65,6 +67,7 @@ const cn = {
       Settings: "对话设置",
       EnablePlugins: "开启插件",
       DisablePlugins: "关闭插件",
+      UploadImage: "上传图片",
     },
     Rename: "重命名对话",
     Typing: "正在输入…",
@@ -318,8 +321,7 @@ const cn = {
       Google: {
         ApiKey: {
           Title: "API 密钥",
-          SubTitle:
-            "从 Google AI 获取您的 API 密钥",
+          SubTitle: "从 Google AI 获取您的 API 密钥",
           Placeholder: "输入您的 Google AI Studio API 密钥",
         },
 
@@ -372,6 +374,25 @@ const cn = {
       ReturnIntermediateStep: {
         Title: "返回中间步骤",
         SubTitle: "是否返回插件调用的中间步骤",
+      },
+    },
+    TTS: {
+      Enable: {
+        Title: "启用文本转语音",
+        SubTitle: "启用基于 OpenAI 的文本生成语音服务",
+      },
+      Autoplay: {
+        Title: "启用自动朗读",
+        SubTitle: "自动生成语音并播放，需先开启文本转语音开关",
+      },
+      Model: "模型",
+      Voice: {
+        Title: "声音",
+        SubTitle: "生成语音时使用的声音",
+      },
+      Speed: {
+        Title: "速度",
+        SubTitle: "生成语音的速度",
       },
     },
   },

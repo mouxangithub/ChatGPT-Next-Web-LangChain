@@ -72,6 +72,7 @@ import { nanoid } from "nanoid";
 import { PluginConfigList } from "./plugin-config";
 import { useMaskStore } from "../store/mask";
 import { ProviderType } from "../utils/cloud";
+import { TTSConfigList } from "./tts-config";
 
 function EditPromptModal(props: { id: string; onClose: () => void }) {
   const promptStore = usePromptStore();
@@ -1075,12 +1076,12 @@ export function Settings() {
                       >
                         <input
                           type="text"
-                          value={accessStore.googleBaseUrl}
+                          value={accessStore.googleUrl}
                           placeholder={Google.ExampleEndpoint}
                           onChange={(e) =>
                             accessStore.update(
                               (access) =>
-                                (access.googleBaseUrl = e.currentTarget.value),
+                                (access.googleUrl = e.currentTarget.value),
                             )
                           }
                         ></input>
@@ -1194,6 +1195,17 @@ export function Settings() {
               const pluginConfig = { ...config.pluginConfig };
               updater(pluginConfig);
               config.update((config) => (config.pluginConfig = pluginConfig));
+            }}
+          />
+        </List>
+
+        <List>
+          <TTSConfigList
+            ttsConfig={config.ttsConfig}
+            updateConfig={(updater) => {
+              const ttsConfig = { ...config.ttsConfig };
+              updater(ttsConfig);
+              config.update((config) => (config.ttsConfig = ttsConfig));
             }}
           />
         </List>
