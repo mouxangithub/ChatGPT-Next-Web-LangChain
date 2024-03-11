@@ -345,7 +345,7 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "chatglm_std",
+    name: "glm-4",
     available: true,
     provider: {
       id: "openai",
@@ -354,7 +354,7 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "chatglm_pro",
+    name: "glm-4v",
     available: true,
     provider: {
       id: "openai",
@@ -363,7 +363,16 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "chatglm_lite",
+    name: "glm-3-turbo",
+    available: true,
+    provider: {
+      id: "openai",
+      providerName: "OpenAI",
+      providerType: "openai",
+    },
+  },
+  {
+    name: "CharacterGLM",
     available: true,
     provider: {
       id: "openai",
