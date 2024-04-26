@@ -105,10 +105,9 @@ export const Azure = {
 
 export const Google = {
   ExampleEndpoint: "https://generativelanguage.googleapis.com/",
-  ChatPath: "v1beta/models/gemini-pro:generateContent",
-  VisionChatPath: "v1beta/models/gemini-pro-vision:generateContent",
-
-  // /api/openai/v1/chat/completions
+  ChatPath: (modelName: string) => `v1beta/models/${modelName}:generateContent`,
+  VisionChatPath: (modelName: string) =>
+    `v1beta/models/${modelName}:generateContent`,
 };
 
 export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lang
@@ -135,6 +134,7 @@ export const GEMINI_SUMMARIZE_MODEL = "gemini-pro";
 export const KnowledgeCutOffDate: Record<string, string> = {
   default: "2021-09",
   "gpt-4-turbo": "2023-12",
+  "gpt-4-turbo-2024-04-09": "2023-12",
   "gpt-4-turbo-preview": "2023-12",
   "gpt-4-1106-preview": "2023-04",
   "gpt-4-0125-preview": "2023-12",
@@ -142,6 +142,7 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   // After improvements,
   // it's now easier to add "KnowledgeCutOffDate" instead of stupid hardcoding it, as was done previously.
   "gemini-pro": "2023-12",
+  "gemini-pro-vision": "2023-12",
 };
 
 export const DEFAULT_TTS_MODEL = "tts-1";
@@ -159,449 +160,71 @@ export const DEFAULT_TTS_VOICES = [
 export const DEFAULT_STT_ENGINE = "WebAPI";
 export const DEFAULT_STT_ENGINES = ["WebAPI", "OpenAI Whisper"];
 export const FIREFOX_DEFAULT_STT_ENGINE = "OpenAI Whisper";
+const openaiModels = [
+  "gpt-3.5-turbo",
+  "gpt-3.5-turbo-0301",
+  "gpt-3.5-turbo-0613",
+  "gpt-3.5-turbo-1106",
+  "gpt-3.5-turbo-0125",
+  "gpt-3.5-turbo-16k",
+  "gpt-3.5-turbo-16k-0613",
+  "gpt-4",
+  "gpt-4-0314",
+  "gpt-4-0613",
+  "gpt-4-1106-preview",
+  "gpt-4-0125-preview",
+  "gpt-4-32k",
+  "gpt-4-32k-0314",
+  "gpt-4-32k-0613",
+  "gpt-4-turbo",
+  "gpt-4-turbo-preview",
+  "gpt-4-vision-preview",
+  "gpt-4-turbo-2024-04-09",
+];
+
+const googleModels = [
+  "gemini-1.0-pro",
+  "gemini-1.5-pro-latest",
+  "gemini-pro-vision",
+];
+
+const anthropicModels = [
+  "claude-instant-1.2",
+  "claude-2.0",
+  "claude-2.1",
+  "claude-3-sonnet-20240229",
+  "claude-3-opus-20240229",
+  "claude-3-haiku-20240307",
+];
 
 export const DEFAULT_MODELS = [
-  {
-    name: "gpt-4",
+  ...openaiModels.map((name) => ({
+    name,
     available: true,
     provider: {
       id: "openai",
       providerName: "OpenAI",
       providerType: "openai",
     },
-  },
-  {
-    name: "gpt-4-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-32k",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-32k-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-turbo-2024-04-09",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-turbo-preview",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-1106-preview",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-0125-preview",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-vision-preview",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-3.5-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-3.5-turbo-0301",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-3.5-turbo-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-3.5-turbo-1106",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-3.5-turbo-16k",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-3.5-turbo-16k-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-35-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-35-turbo-16k",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "ERNIE-Bot",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "ERNIE-Bot-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "ERNIE-Bot-4",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "SparkDesk",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "SparkDesk2",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "SparkDesk3",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "360GPT_S2_V9",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "glm-4",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "glm-4v",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "glm-3-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "CharacterGLM",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "qwen-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "qwen-plus",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "hunyuan",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-35-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-35-turbo-16k",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "ERNIE-Bot",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "ERNIE-Bot-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "ERNIE-Bot-4",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "SparkDesk",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "SparkDesk2",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "SparkDesk3",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "360GPT_S2_V9",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "chatglm_std",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "chatglm_pro",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "chatglm_lite",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "qwen-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "qwen-plus",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "hunyuan",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gemini-pro",
+  })),
+  ...googleModels.map((name) => ({
+    name,
     available: true,
     provider: {
       id: "google",
       providerName: "Google",
       providerType: "google",
     },
-  },
-  {
-    name: "gemini-pro-vision",
+  })),
+  ...anthropicModels.map((name) => ({
+    name,
     available: true,
     provider: {
-      id: "google",
-      providerName: "Google",
-      providerType: "google",
+      id: "anthropic",
+      providerName: "Anthropic",
+      providerType: "anthropic",
     },
-  },
+  })),
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
