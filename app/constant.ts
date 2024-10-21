@@ -32,6 +32,7 @@ export enum Path {
   Masks = "/masks",
   Plugins = "/plugins",
   Auth = "/auth",
+  Artifacts = "/artifacts",
 }
 
 export enum ApiPath {
@@ -44,6 +45,7 @@ export enum ApiPath {
   Baidu = "/api/baidu",
   ByteDance = "/api/bytedance",
   Alibaba = "/api/alibaba",
+  Artifacts = "/api/artifacts",
 }
 
 export enum SlotID {
